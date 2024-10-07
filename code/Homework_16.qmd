@@ -3,3 +3,106 @@ title: "Homework-16"
 format: html
 ---
 
+Setup
+```{r}
+rm(list = ls())
+library(tidyverse)
+library(here)
+```
+
+import the data set
+```{r}
+cover <- read.csv(here("data", "donnerville_percent_cover.csv"))
+```
+
+Examine the data set using `str()` and `glimpse()`
+```{r}
+str(cover)
+glimpse(cover)
+```
+
+I do not think any of the column headers need to be changed
+
+Turn site, plot.type, and cover_type into factor variables
+```{r}
+cover$cover_type <- as.factor(cover$cover_type)
+
+cover$Plot.type <- as.factor(cover$Plot.type)
+
+cover$cover_type <- as.factor(cover$cover_type)
+```
+
+Turn data into a date variable
+```{r}
+cover$Date <- dmy(cover$Date)
+```
+
+
+Fix site data
+```{r}
+fix_site1 <- which(cover$Site %in% c("donnerville 1", "Donnerville 1", "DONNERVILLE - 1")) # select all rows that contain these characters
+
+cover$Site[fix_site1] <- "Donnerville 1" # change the selected rows into the same character
+
+cover$Site <- factor(cover$Site) # re-factor the rows
+
+
+fix_site2 <- which(cover$Site == "donnerville 2") # select all rows that contain these characters
+
+cover$Site[fix_site2] <- "Donnerville 2" # change the selected rows into the same character
+
+cover$Site <- factor(cover$Site) # re-factor the rows
+
+
+fix_site3 <- which(cover$Site == "donnerville-3") # select all rows that contain these characters
+
+cover$Site[fix_site3] <- "Donnerville 3" # change the selected rows into the same character
+
+cover$Site <- factor(cover$Site) # re-factor the rows
+
+levels(cover$Site) # check to see if data was changed
+```
+
+Fix cover_type column
+```{r}
+fix_type1 <- which(cover$cover_type == "bare") # select all rows that contain these characters
+
+cover$cover_type[fix_type1] <- "Bare" # change the selected rows into the same character
+
+cover$cover_type <- factor(cover$cover_type) # re-factor the rows
+
+
+fix_type2 <- which(cover$cover_type == "bryophtes") # select all rows that contain these characters
+
+cover$cover_type[fix_type2] <- "Bryophytes" # change the selected rows into the same character
+
+cover$cover_type <- factor(cover$cover_type) # re-factor the rows
+
+
+fix_type3 <- which(cover$cover_type == "vasc ") # select all rows that contain these characters
+
+cover$cover_type[fix_type3] <- "Vascular" # change the selected rows into the same character
+
+cover$cover_type <- factor(cover$cover_type) # re-factor the rows
+
+levels(cover$cover_type) # check to see if data was changed
+```
+
+Find the average percent for each cover
+```{r}
+mean_groups <- summarise(
+  group_by(cover, cover_type), 
+  cover_mean = mean(Percent)
+)
+```
+
+Find the average vascular plant cover across the sites
+```{r}
+mean_plant_cover <- which(cover$cover_type == "Vascular")
+
+cover %>% summarise(
+  mean_Vascular_cover = mean(Percent)
+)
+```
+
+
