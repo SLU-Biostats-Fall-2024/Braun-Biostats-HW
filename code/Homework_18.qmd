@@ -1,0 +1,112 @@
+---
+title: "HW_18"
+format: html
+editor: visual
+---
+
+```{r}
+rm(list=ls())
+library(tidyverse)
+library(here)
+compensation <- read.csv(here("data", "compensation.csv"))
+```
+
+ggplot()
+```{r}
+ggplot(compensation, aes(x = Root, y = Fruit)) +
+  geom_point()
+# creates a point graph using the Root and Fruit columns
+```
+
+theme_bw()
+```{r}
+ggplot(compensation, aes(x=Root,y=Fruit))+
+  geom_point()+
+  theme_bw()
+# changes the appearance of the graph (background is white isntead of grey)
+```
+
+geom_points()
+```{r}
+ggplot(compensation, aes(x = Root, y = Fruit)) +
+  geom_point(size = 5) +
+  theme_bw()
+# makes the points bigger
+```
+
+```{r}
+ggplot(compensation, aes(x = Root, y = Fruit)) +
+geom_point(size = 5) +
+xlab("Root Biomass") +
+ylab("Fruit Production") +
+theme_bw()
+# changes the name of x and y axis
+```
+
+```{r}
+ggplot(compensation, aes(x = Root, y = Fruit, colour = Grazing)) +
+geom_point(size = 5) +
+xlab("Root Biomass") +
+ylab("Fruit Production") +
+theme_bw()
+# alters the colors of the points
+```
+
+```{r}
+ggplot(compensation, aes(x = Root, y = Fruit, shape = Grazing)) +
+geom_point(size = 5) +
+xlab("Root Biomass") +
+ylab("Fruit Production") +
+theme_bw()
+# changes the shape of the points based on the levels
+```
+
+geom_boxplot()
+```{r}
+ggplot(compensation, aes(x = Grazing, y = Fruit)) +
+geom_boxplot() +
+xlab("Grazing treatment") +
+ylab("Fruit Production") +
+theme_bw()
+# creates a box and whisker plot using the compensation data
+```
+
+```{r}
+ggplot(compensation, aes(x = Grazing, y = Fruit)) +
+geom_boxplot() +
+geom_point(size = 4, colour = 'lightgrey', alpha = 0.5) +
+xlab("Grazing treatment") +
+ylab("Fruit Production") +
+theme_bw()
+# adds points to the plot
+```
+
+geom_histogram()
+```{r}
+ggplot(compensation, aes(x = Fruit)) +
+geom_histogram()
+# creates a histogram of the data
+```
+
+```{r}
+ggplot(compensation, aes(x = Fruit)) +
+geom_histogram(bins = 10)
+ggplot(compensation, aes(x = Fruit)) +
+geom_histogram(binwidth = 15)
+#alters the width of the bars and the number of bins
+```
+
+facet_wrap()
+```{r}
+ggplot(compensation, aes(x = Fruit)) +
+geom_histogram(binwidth = 15) +
+facet_wrap(~Grazing)
+# divides the data into two plots based on the level
+```
+
+ggsave()
+```{r}
+ggsave("ThatCoolHistogramOfFruit.png")
+# saves an image of the graph
+```
+
