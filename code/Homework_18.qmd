@@ -12,6 +12,7 @@ compensation <- read.csv(here("data", "compensation.csv"))
 ```
 
 ggplot()
+
 ```{r}
 ggplot(compensation, aes(x = Root, y = Fruit)) +
   geom_point()
@@ -19,6 +20,7 @@ ggplot(compensation, aes(x = Root, y = Fruit)) +
 ```
 
 theme_bw()
+
 ```{r}
 ggplot(compensation, aes(x=Root,y=Fruit))+
   geom_point()+
@@ -27,6 +29,7 @@ ggplot(compensation, aes(x=Root,y=Fruit))+
 ```
 
 geom_points()
+
 ```{r}
 ggplot(compensation, aes(x = Root, y = Fruit)) +
   geom_point(size = 5) +
@@ -62,6 +65,7 @@ theme_bw()
 ```
 
 geom_boxplot()
+
 ```{r}
 ggplot(compensation, aes(x = Grazing, y = Fruit)) +
 geom_boxplot() +
@@ -82,6 +86,7 @@ theme_bw()
 ```
 
 geom_histogram()
+
 ```{r}
 ggplot(compensation, aes(x = Fruit)) +
 geom_histogram()
@@ -97,6 +102,7 @@ geom_histogram(binwidth = 15)
 ```
 
 facet_wrap()
+
 ```{r}
 ggplot(compensation, aes(x = Fruit)) +
 geom_histogram(binwidth = 15) +
@@ -105,8 +111,8 @@ facet_wrap(~Grazing)
 ```
 
 ggsave()
+
 ```{r}
 ggsave("ThatCoolHistogramOfFruit.png")
 # saves an image of the graph
 ```
-

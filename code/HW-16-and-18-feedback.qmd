@@ -1,0 +1,21 @@
+---
+title: "homework feedback"
+format: html
+editor: visual
+---
+
+## Homework Feedback
+
+### Homework 16
+
+For the first data summary question (line 92) you were supposed to get the means just at Site Donnverville 1. You need to add a `group_by` to your code. Check the solution code to see how it works.
+
+Not sure why you had line 101 - not needed.
+
+Line 103 does the trick.
+
+### Homework 18
+
+This looks good. In general, I'd like to see you provide more commentary outside of your code chunks. So, for example, on lines 24 - 28, you just write **theme_bw()** outside of the code chunk, but inside of the chunk you write `# changes the appearance of the graph (background is white instead of gray`)
+
+What you included in the code chunk as a comment does not tell you which part of the code achieves the change. I would suggest that you write that information as the commentary outside of the code chunk, and just note on line 27 after the line of code `# theme_bw() changes background` or something. Make sense?
